@@ -1,7 +1,9 @@
 function IngredientCtrl($scope) {
   // default content
   $scope.ingredients = [
-    {name:'Avocado', selected:true}
+    { name:'Avocado', selected:true },
+    { name:'Tehini', selected:true },
+    { name:'Eggs', selected:true }
   ];
   
   // add a new ingredient
@@ -15,6 +17,7 @@ function IngredientCtrl($scope) {
     $scope.ingredients = [];
   };
  
+  // find all pairs of selected ingredients
   $scope.findPairs = function() {
     var pairs = [];
     var ings = $scope.ingredients;
@@ -32,12 +35,11 @@ function IngredientCtrl($scope) {
     return pairs;
   };
   
-  $scope.searchUrl = function() {
+  // build a search URL from the list of keywords
+  $scope.searchUrl = function(keywords) {
     var query = ""
-    angular.forEach($scope.ingredients, function(ingredient) {
-      if (ingredient.selected) {
-	query += ingredient.name + "+";
-      }
+    angular.forEach(keywords, function(keyword) {
+      query += keyword + "+";
     });
     return "http://www.google.com/search?q=" + query;
   };
