@@ -17,9 +17,14 @@
       
       <ul class="unstyled">
         <li ng-repeat="ingredient in ingredients">
+          <input type="checkbox" ng-model="ingredient.selected" />
           <span>{{ingredient.name}}</span>
         </li>
       </ul>
+      
+      <hr />
+      
+      <li>{{searchUrl()}}</li>
     </div>
   </body>
   
