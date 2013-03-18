@@ -28,7 +28,9 @@
       <hr />
       
       <h2>Pairs</h2>
-      <li>{{searchUrl()}}</li>
+      <ul class="unstyled">
+	<li ng-repeat="pair in findPairs()">{{pair}}</li>
+      </ul>
     </div>
   </body>
   

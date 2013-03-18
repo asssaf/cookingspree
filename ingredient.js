@@ -14,6 +14,23 @@ function IngredientCtrl($scope) {
   $scope.clear = function() {
     $scope.ingredients = [];
   };
+ 
+  $scope.findPairs = function() {
+    var pairs = [];
+    var ings = $scope.ingredients;
+    
+    for (i = 0; i < ings.length; ++i) {
+      if (ings[i].selected) {
+	for (j = i + 1; j < ings.length; ++j) {
+	  if (ings[j].selected) {
+	    pairs.push([ ings[i].name, ings[j].name ]);
+	  }
+	}
+      }
+    }
+    
+    return pairs;
+  };
   
   $scope.searchUrl = function() {
     var query = ""
