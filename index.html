@@ -1,0 +1,26 @@
+<!doctype html>
+<html ng-app>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js"></script>
+    <script src="ingredient.js"></script>
+  </head>
+
+  <body>
+    <div ng-controller="IngredientCtrl">
+      <h1>Ingredients</h1> [ <a href="" ng-click="clear()">clear</a> ]
+      <form ng-submit="addIngredient()">	
+	<input type="text" ng-model="ingredientName" placeholder="Enter ingredient name here" />
+	<input class="btn-primary" type="submit" value="add" />
+      </form>
+      
+      <hr/>
+      
+      <ul class="unstyled">
+        <li ng-repeat="ingredient in ingredients">
+          <span>{{ingredient.name}}</span>
+        </li>
+      </ul>
+    </div>
+  </body>
+  
+</html>
