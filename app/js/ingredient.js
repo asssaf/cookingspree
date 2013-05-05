@@ -39,7 +39,12 @@ function IngredientCtrl($scope) {
   $scope.searchUrl = function(keywords) {
     var query = ""
     angular.forEach(keywords, function(keyword) {
+      // handle spaces by wrapping in quotes
+      var space = keyword.indexOf(" ");
       keyword = encodeURIComponent(keyword);
+      if (space != -1) {
+	keyword = '"' + keyword + '"';
+      }
       query += keyword + "+";
     });
     return "http://www.google.com/search?q=" + query;
