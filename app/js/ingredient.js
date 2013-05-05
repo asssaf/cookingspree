@@ -39,6 +39,7 @@ function IngredientCtrl($scope) {
   $scope.searchUrl = function(keywords) {
     var query = ""
     angular.forEach(keywords, function(keyword) {
+      keyword = encodeURIComponent(keyword);
       query += keyword + "+";
     });
     return "http://www.google.com/search?q=" + query;
