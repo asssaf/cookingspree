@@ -1,4 +1,27 @@
-function IngredientCtrl($scope) {
+angular.module('cookingspree.service', []).
+  value('queryHandler', {
+    searchUrl: function(keywords) {
+      var query = ""
+      angular.forEach(keywords, function(keyword) {
+	// handle spaces by wrapping in quotes
+	var space = keyword.indexOf(" ");
+	keyword = encodeURIComponent(keyword);
+	if (space != -1) {
+	  keyword = '"' + keyword + '"';
+	}
+	query += keyword + "+";
+      });
+      return "http://www.google.com/search?q=" + query;
+    }
+  });
+  
+angular.module('cookingspree', [ 'cookingspree.service' ]).
+  run(function(queryHandler) {
+  });
+  
+
+
+function IngredientCtrl($scope, queryHandler) {
   // default content
   $scope.ingredients = [
     { name:'Avocado', selected:true },
@@ -37,16 +60,7 @@ function IngredientCtrl($scope) {
   
   // build a search URL from the list of keywords
   $scope.searchUrl = function(keywords) {
-    var query = ""
-    angular.forEach(keywords, function(keyword) {
-      // handle spaces by wrapping in quotes
-      var space = keyword.indexOf(" ");
-      keyword = encodeURIComponent(keyword);
-      if (space != -1) {
-	keyword = '"' + keyword + '"';
-      }
-      query += keyword + "+";
-    });
-    return "http://www.google.com/search?q=" + query;
+    return queryHandler.searchUrl(keywords);
   };
+
 }
