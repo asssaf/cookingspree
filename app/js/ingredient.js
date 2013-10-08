@@ -16,6 +16,7 @@ angular.module('cookingspree.service', []).
   });
   
 angular.module('cookingspree', [ 'cookingspree.service' ]).
+  value('version', '0.0.1').
   run(function(queryHandler) {
   });
   
@@ -62,5 +63,9 @@ function IngredientCtrl($scope, queryHandler) {
   $scope.searchUrl = function(keywords) {
     return queryHandler.searchUrl(keywords);
   };
+}
 
+
+function VersionCtrl($scope, version) {
+  $scope.version = version
 }

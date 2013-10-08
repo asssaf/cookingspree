@@ -8,7 +8,9 @@
   </head>
 
   <body>
+    <sub ng-controller="VersionCtrl">Version {{version}}</sub>
     <h1>Welcome to Cooking Spree!</h1>
+    
     <div ng-controller="IngredientCtrl">
       <h2>Ingredients</h2> 
       <form ng-submit="addIngredient()">	
